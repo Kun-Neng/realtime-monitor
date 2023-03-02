@@ -1,0 +1,17 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "A simple server with Socket.IO",
+  "keywords": [
+    "Socket.IO"
+  ],
+  "author": "Kun-Neng Hung",
+  "license": "ISC",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "ws": "^8.12.1"
+  }
+}
