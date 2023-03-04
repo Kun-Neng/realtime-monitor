@@ -4,9 +4,6 @@
   <button type="button" (click)="update()">Update</button>
 </p>
 
-<ng-container *ngIf="status$ | async as status">
-  <!-- <div>{{ status | json }}</div> -->
-  <div>device A: {{ status.deviceA }}</div>
-  <div>device B: {{ status.deviceB }}</div>
-  <div>device C: {{ status.deviceC }}</div>
+<ng-container *ngIf="devices$ | async as devices">
+  <div>{{ devices | json }}</div>
 </ng-container>

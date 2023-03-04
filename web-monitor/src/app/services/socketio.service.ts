@@ -1,21 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Socket } from 'ngx-socket-io';
-
-interface Status {
-  deviceA: number;
-  deviceB: number;
-  deviceC: number;
-};
+import { Device } from '../models/device';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class SocketIOService {
   constructor(private socket: Socket) { }
 
-  getStatus(): Observable<Status> {
-    return this.socket.fromEvent<Status>('status').pipe(map(data => data));
+  getDevices(): Observable<Device[]> {
+    return this.socket.fromEvent<Device[]>('devices').pipe(map(data => data));
   }
 
   sendCommand(command: { name: string, content?: string, value?: number }) {

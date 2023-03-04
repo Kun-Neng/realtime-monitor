@@ -13,8 +13,8 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/static/index.html');
 });
 
+const numDevices = 1000;
 const interval = 1000;
-let allowSent = false;
 let statusTimer;
 let level = 0;
 
@@ -23,11 +23,15 @@ io.on('connection', (socket) => {
 
   if (!statusTimer) {
     statusTimer = setInterval(() => {
-      socket.broadcast.emit('status', {
-        deviceA: Math.ceil(Math.random() * 10) + level,
-        deviceB: Math.ceil(Math.random() * 10) + level,
-        deviceC: Math.ceil(Math.random() * 10) + level
+      const devices = Array.from(Array(numDevices)).map((_, index) => {
+        return {
+          name: `device_${index}`,
+          value: Math.ceil(Math.random() * 10) + level,
+          status: Math.random() >= 0.8
+        };
       });
+
+      socket.broadcast.emit('devices', devices);
     }, interval);
   }
 

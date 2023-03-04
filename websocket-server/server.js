@@ -1,6 +1,7 @@
 const WebSocket = require('ws');
 const wsServer = new WebSocket.Server({ port: 3000 });
 
+const numDevices = 1000;
 const interval = 1000;
 let statusTimer = undefined;
 let level = 0;
@@ -10,9 +11,9 @@ wsServer.on('connection', (socket) => {
 
   if (!statusTimer) {
     statusTimer = setInterval(() => {
-      const devices = Array.from(Array(1000)).map((_, index) => {
+      const devices = Array.from(Array(numDevices)).map((_, index) => {
         return {
-          deviceName: `device_${index}`,
+          name: `device_${index}`,
           value: Math.ceil(Math.random() * 10) + level,
           status: Math.random() >= 0.8
         };
