@@ -14,7 +14,9 @@ wsServer.on('connection', (socket) => {
       const devices = Array.from(Array(numDevices)).map((_, index) => {
         return {
           name: `device_${index}`,
-          value: Math.ceil(Math.random() * 10) + level,
+          value1: Math.ceil(Math.random() * 10) + level,
+          value2: Math.ceil(Math.random() * 10) + level,
+          value3: Math.ceil(Math.random() * 10) + level,
           status: Math.random() >= 0.8
         };
       });

@@ -1,9 +1,13 @@
-<h1>{{ title }}</h1>
+<h2 style="margin: 1rem 0;">{{ title }}</h2>
 
-<p>
+<div style="margin: 0.5rem 0;">
   <button type="button" (click)="update()">Update</button>
-</p>
+</div>
 
-<ng-container *ngIf="devices$ | async as devices">
-  <div>{{ devices | json }}</div>
-</ng-container>
+<div style="display: flex; flex-wrap: wrap;">
+  <ng-container *ngIf="devices$ | async as devices">
+    <ng-container *ngFor="let device of devices">
+      <div appDevice [device]="device"></div>
+    </ng-container>
+  </ng-container>
+</div>
