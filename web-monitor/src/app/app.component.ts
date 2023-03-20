@@ -11,25 +11,25 @@ import { WebsocketService } from './services/websocket.service';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Web Monitor';
 
-  devices$ = this.mockDataService.devices$;
+  // devices$ = this.mockDataService.devices$;
   // devices$ = this.socketIOService.getDevices();
-  // devices$ = this.websocketService.devices$;
+  devices$ = this.websocketService.devices$;
   
-  constructor(private mockDataService: MockDataService) { }
+  // constructor(private mockDataService: MockDataService) { }
   // constructor(private socketIOService: SocketIOService) { }
-  // constructor(private websocketService: WebsocketService) { }
+  constructor(private websocketService: WebsocketService) { }
   
   ngOnInit(): void {
-    this.mockDataService.startToGetMockDevices();
-    // this.websocketService.startToGetDevices();
+    // this.mockDataService.startToGetMockDevices();
+    this.websocketService.startToGetDevices();
   }
 
   ngOnDestroy(): void {
-    this.mockDataService.stopGettingMockDevices();
+    // this.mockDataService.stopGettingMockDevices();
   }
 
   update() {
-    this.mockDataService.addLocalLevel();
+    // this.mockDataService.addLocalLevel();
 
     // this.socketIOService.sendCommand({
     //   name: 'update',
@@ -37,10 +37,10 @@ export class AppComponent implements OnInit, OnDestroy {
     //   value: 10
     // });
 
-    // this.websocketService.sendCommand({
-    //   name: 'update',
-    //   content: 'Test',
-    //   value: 10
-    // });
+    this.websocketService.sendCommand({
+      name: 'update',
+      content: 'Test',
+      value: 50
+    });
   }
 }
